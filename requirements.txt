@@ -1,3 +1,7 @@
 Flask
 gunicorn
 ChatterBot2
+chatterbot-corpus
+en-core-web-sm
+Spacy
+Numpy
