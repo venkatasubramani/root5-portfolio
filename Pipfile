@@ -16,4 +16,4 @@ Spacy='*'
 Numpy='*'
 
 [requires]
-python_version = "3.8.11"
+python_version = "3.7"
