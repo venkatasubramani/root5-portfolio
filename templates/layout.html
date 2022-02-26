@@ -93,7 +93,6 @@
         <a target="_blank" href="https://www.linkedin.com/in/vsroot5/"><i class="share fab fa-linkedin hover-opacity"></i><a/>
         <a target="_blank" href="https://www.twitter.com/__Root5__"><i class="share fab fa-twitter-square hover-opacity"></i></a>
         <a target="_blank" href="https://github.com/venkatasubramani"><i class="share fab fa-github-square hover-opacity"></i></a>
-
                 </div>
                 <div class="row nav-center">
                     <div class="col-md-6">
@@ -108,9 +107,61 @@
     </div>
 </div>
 
+<button class="open-button" onclick="openForm()">Chat</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/get" class="form-container">
+    <div style=" position: relative;
+    padding-bottom: 200px">
+<!--    <label ><b></b></label>-->
+        <button type="button" class="btn cancel" onclick="closeForm()">Venky's Resume ChatBot</button>
+      <div id="chatbox" style="overflow-y: scroll;
+height: 350px;">
+
+        <p class="botText">
+        <span>Hello there! I am Venky's Resume ChatBot</span>
+        </p>
+      </div>
+      <div id="userInput" style="position: absolute; bottom: 0;" class="btn btn-info" >
+        <input id="textInput" class="btn btn-info"  type="text" name="msg" placeholder="Message" />
+      </div>
+
 
 <script>
-    google.charts.load('current', {'packages':['corechart','timeline','table']});
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText" style="text-align: right;"><span>' + rawText + "</span></p>";
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<p class="botText" ><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        $("#textInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+      </script>
+</div>
+<!--<div>-->
+<!--    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>-->
+<!--</div>-->
+
+
+  </form>
+</div>
+<script>
+
+
+ google.charts.load('current', {'packages':['corechart','timeline','table']});
 google.charts.setOnLoadCallback(drawbarChart);
 google.charts.setOnLoadCallback(drawStudyChart);
 google.charts.setOnLoadCallback(drawWorkChart);
@@ -313,6 +364,15 @@ $(function() {
   $('.message form').hide()
 });
 }
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
 
 </script>
 
