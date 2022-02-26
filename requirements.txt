@@ -1,4 +1,5 @@
 Flask
+python==3.8
 gunicorn
 ChatterBot2
 PyYAML==3.13
