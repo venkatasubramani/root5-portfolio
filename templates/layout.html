@@ -143,8 +143,8 @@ google.charts.setOnLoadCallback(drawStudyTable);
         data.addColumn('string', 'Role');
         data.addColumn('string', 'Period');
         data.addRows([
-          ['Tata Consultancy Services ltd','ML Engineer','2020 May - present'],
-          ['Tata Consultancy Services ltd','.Net Developer','2018 June - 2020 May'],
+          ['Tata Consultancy Services ltd','ML Engineer','2020 Mar - present'],
+          ['Tata Consultancy Services ltd','.Net Developer','2018 June - 2020 Feb'],
         ]);
 
         var table = new google.visualization.Table(document.getElementById('exp_tab'));
@@ -198,7 +198,7 @@ function drawWorkChart() {
     dataTable.addColumn({ type: 'date', id: 'Start' });
     dataTable.addColumn({ type: 'date', id: 'End' });
     dataTable.addRows([
-      [ '.Net Devloper ',' Tata Consultancy Services', new Date(2018, 6, 16), new Date(2020, 02,28 ) ],
+      [ '.Net Devloper ',' Tata Consultancy Services', new Date(2018, 06, 16), new Date(2020, 02,28 ) ],
       [ 'ML Engineer  ','Tata Consultancy Services', new Date(2020, 03, 02), new Date()]
       ]);
 
