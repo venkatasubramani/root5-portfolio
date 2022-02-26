@@ -1,6 +1,35 @@
 from flask import Flask, request, render_template, send_from_directory
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ListTrainer
 app = Flask(__name__)
-
+with open('file.txt','r') as file:
+    conversation = file.read()
+print(conversation)
+bott = ChatBot("Root5 Resume ChatBot")
+trainer2 = ListTrainer(bott)
+trainer2.train([    "Hey",
+    "Hi there!",
+    "Hi",
+    "Hi!",
+    "How are you doing?",
+    "I'm doing great.",
+    "That is good to hear",
+    "Thank you.",
+    "You're welcome.",
+    "What is your name?", "My name is Root5 Resume ChatBot",
+    "Who created you?", "Venkatasubramani",
+    "Tell me about yourself",
+    "My name is Venkatasubramani Karthikeyan. I am a machine learning engineer and a web developer",
+    "Contact",
+    "Email : venkykasprov@gmail.com, Mobile number : +91 9994329789 Location : Ranipet, Tamilnadu",
+    "Education",
+    "Bachelor of Engineering (B.E), Electricals & Engineering\n Sri Sairam Engineering College'\n'2014 - 2018 '\n'CGPA: 7.89/10 '\n'Senior Secondary (XII), DAV BHEL SCHOOL Ranipet (CBSE board) Year of completion: 2014 Percentage: 86.20% Secondary (X) DAV BHEL SCHOOL (CBSE board) Year of completion: 2012 grade: 8.4/10",
+    "Projects",
+    ])
+trainer = ChatterBotCorpusTrainer(bott)
+trainer.train("chatterbot.corpus.english")
+#trainer2.train(["Thank You","Welcome"])
 
 
 @app.after_request
@@ -43,6 +72,12 @@ def hobbies():
 @app.route("/edu_exp")
 def venky():
     return render_template("edu_exp.html")
+
+@app.route("/get")
+def get_bot_response():
+    print(request.args.get('msg'))
+    userText = request.args.get('msg')
+    return str(bott.get_response(userText))
 
 # @app.route('/files/<path:filename>', methods=['GET', 'POST'])
 # def download(filename):
