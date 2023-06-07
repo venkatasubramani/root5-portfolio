@@ -1,3 +1,7 @@
+# update
+
+this project hosted won't work as I haven't paid money to heroku app for hosting, they don't allow us to host for free anymore. 
+
 # root5-portfolio
 
 I have hosted this flask application in heroku.com
